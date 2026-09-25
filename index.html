@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tijolinho - Simulador de Orçamento</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- 🎨 PASSO 1: A Fachada Digital Reconfigurada -->
+        <header>
+            <div class="selo-ano">DESDE 1990</div>
+            <h1>TIJOLINHO</h1>
+            <p class="subtitulo">Materiais para Construção</p>
+            <span class="selo-frete">🚚 ENTREGA GRÁTIS NA REGIÃO</span>
+            
+            <!-- Botão de entrada para iniciar o fluxo -->
+            <button class="btn-iniciar" id="btn-iniciar-fluxo" onclick="iniciarOrcamento()">
+                🛠️ Começar Meu Orçamento
+            </button>
+        </header>
+
+        <!-- 📦 PASSO 2: Método de Recebimento (Fica escondido até clicar em Iniciar) -->
+        <div class="secao" id="secao-recebimento" style="display: none;">
+            <h2>📦 Como deseja receber os materiais?</h2>
+            <div class="opcoes-entrega">
+                <label class="opcao-radio">
+                    <input type="radio" name="tipo_frete" value="retirada" checked onclick="alternarFormularioEntrega()">
+                    Retirada na Loja
+                </label>
+                <label class="opcao-radio">
+                    <input type="radio" name="tipo_frete" value="entrega" onclick="alternarFormularioEntrega()">
+                    Entrega na Obra
+                </label>
+            </div>
+
+            <!-- Formulário de Endereço Inteligente -->
+            <div id="formulario-entrega">
+                <div class="grupo-input">
+                    <label for="nome_cliente">Nome Completo:</label>
+                    <input type="text" id="nome_cliente" placeholder="Quem vai receber o material?">
+                </div>
+                <div class="grupo-input">
+                    <label for="whatsapp_cliente">WhatsApp de Contato:</label>
+                    <input type="tel" id="whatsapp_cliente" placeholder="(11) 99999-9999">
+                </div>
+                <div class="grupo-input">
+                    <label for="endereco_obra">Endereço Completo da Obra:</label>
+                    <input type="text" id="endereco_obra" placeholder="Rua, número, bairro...">
+                </div>
+            </div>
+            
+            <button class="btn-adicionar" onclick="avancarParaCategorias()">Avançar para os Produtos ➡️</button>
+        </div>
+        <!-- 📌 PASSO 3: Filtro de Categorias (Fica escondido até o cliente avançar) -->
+        <div class="secao" id="secao-produtos" style="display: none;">
+            <h2>🧱 Selecione o Setor da Loja:</h2>
+            
+            <div class="abas-categorias">
+                <button class="btn-aba active" id="aba-basicos" onclick="mudarSetor('basicos')">🧱 Básicos & Telhas</button>
+                <button class="btn-aba" id="aba-tintas" onclick="mudarSetor('tintas')">🎨 Tintas & Pintura</button>
+                <button class="btn-aba" id="aba-ferragens" onclick="mudarSetor('ferragens')">🛠️ Parafusos & Ferragens</button>
+            </div>
+
+            <!-- 🏠 CATÁLOGO 1: BÁSICOS E TELHAS -->
+            <div id="cat-basicos" class="grid-catalogo">
+                <div class="card-produto">
+                    <div class="icone-material">🧱</div>
+                    <h3>Tijolo Baiano</h3>
+                    <p class="preco-unitario">R$ 5,00 / Unid.</p>
+                    <div class="acoes-card">
+                        <input type="number" id="qtd-tijolo" min="1" value="1">
+                        <button onclick="adicionarDoCatalogo(5.00, 'Tijolo Baiano', 'qtd-tijolo')">Adicionar</button>
+                    </div>
+                </div>
+                <div class="card-produto">
+                    <div class="icone-material">📐</div>
+                    <h3>Saco de Cimento (50kg)</h3>
+                    <p class="preco-unitario">R$ 33,00 / Unid.</p>
+                    <div class="acoes-card">
+                        <input type="number" id="qtd-cimento" min="1" value="1">
+                        <button onclick="adicionarDoCatalogo(33.00, 'Saco de Cimento (50kg)', 'qtd-cimento')">Adicionar</button>
+                    </div>
+                </div>
+                <div class="card-produto">
+                    <div class="icone-material">🏠</div>
+                    <h3>Telha Romana</h3>
+                    <p class="preco-unitario">R$ 15,00 / Unid.</p>
+                    <div class="acoes-card">
+                        <input type="number" id="qtd-telha" min="1" value="1">
+                        <button onclick="adicionarDoCatalogo(15.00, 'Telha Romana', 'qtd-telha')">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🎨 CATÁLOGO 2: TINTAS (Começa escondido) -->
+            <div id="cat-tintas" class="grid-catalogo" style="display: none;">
+                <div class="card-produto">
+                    <div class="icone-material">🪣</div>
+                    <h3>Lata de Tinta Acrílica (18L)</h3>
+                    <p class="preco-unitario">R$ 280,00 / Unid.</p>
+                    <div class="acoes-card">
+                        <input type="number" id="qtd-tinta" min="1" value="1">
+                        <button onclick="adicionarDoCatalogo(280.00, 'Lata de Tinta (18L)', 'qtd-tinta')">Adicionar</button>
+                    </div>
+                </div>
+                <div class="card-produto">
+                    <div class="icone-material">🖌️</div>
+                    <h3>Rolo de Pintura + Trincha</h3>
+                    <p class="preco-unitario">R$ 45,00 / Kit</p>
+                    <div class="acoes-card">
+                        <input type="number" id="qtd-kit-pintura" min="1" value="1">
+                        <button onclick="adicionarDoCatalogo(45.00, 'Kit Rolo e Trincha', 'qtd-kit-pintura')">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🔩 CATÁLOGO 3: FERRAGENS E PARAFUSOS (Começa escondido) -->
+            <div id="cat-ferragens" class="grid-catalogo" style="display: none;">
+                <div class="card-produto">
+                    <div class="icone-material">🔩</div>
+                    <h3>Parafuso Sextavado c/ Bucha</h3>
+                    <p class="preco-unitario">R$ 1,50 / Unid.</p>
+                    <div class="acoes-card">
+                        <input type="number" id="qtd-parafuso" min="1" value="1">
+                        <button onclick="adicionarDoCatalogo(1.50, 'Parafuso c/ Bucha', 'qtd-parafuso')">Adicionar</button>
+                    </div>
+                </div>
+                <div class="card-produto">
+                    <div class="icone-material">🔨</div>
+                    <h3>Pacote de Pregos com Cabeça</h3>
+                    <p class="preco-unitario">R$ 18,00 / Pacote</p>
+                    <div class="acoes-card">
+                        <input type="number" id="qtd-prego" min="1" value="1">
+                        <button onclick="adicionarDoCatalogo(18.00, 'Pacote de Pregos', 'qtd-prego')">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🛒 PASSO 4: Lista de Orçamento Final -->
+        <div class="secao" id="secao-carrinho" style="display: none;">
+            <h2>🛒 Materiais Selecionados</h2>
+            <ul id="lista-orcamento">
+                <li id="aviso-vazio" class="item-vazio">Nenhum material selecionado ainda. Adicione itens acima!</li>
+            </ul>
+
+            <div class="total-container">
+                <h3>Total Estimado: <span id="valor-total">R$ 0,00</span></h3>
+            </div>
+
+            <button class="btn-whatsapp" onclick="enviarParaWhatsApp()">
+                💬 Enviar Orçamento para o WhatsApp Celular
+            </button>
+        </div>
+    </div>
+    <!-- Rodapé Oficial com os Dados Reais do Cartão -->
+    <footer>
+        <div class="footer-conteudo">
+            <div class="footer-secao">
+                <h4>📍 Endereço</h4>
+                <p>Av. Rodolfo Pirani, 698</p>
+                <p>Jardim Rodolfo Pirani - São Paulo - SP</p>
+                <p><strong>Desde 1990</strong></p>
+            </div>
+            
+            <div class="footer-secao">
+                <h4>📞 Contato</h4>
+                <p>Fixo: (11) 2751-9285</p>
+                <p>WhatsApp: (11) 98188-4107</p>
+            </div>
+
+            <div class="footer-secao">
+                <h4>⏰ Atendimento</h4>
+                <p><strong>Seg a Sex:</strong> 08h às 18h</p>
+                <p><strong>Sábado:</strong> 08h às 16h</p>
+                <p><strong>Dom e Feriados:</strong> Fechado</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Nova Lógica de Programação JavaScript Interativa -->
+    <script>
+        // Função do Passo 1: Inicia o orçamento e mostra a escolha de entrega
+        function iniciarOrcamento() {
+            document.getElementById('secao-recebimento').style.display = 'block';
+            document.getElementById('btn-iniciar-fluxo').style.display = 'none';
+        }
+
+        // Altera entre mostrar ou esconder o endereço se for Entrega ou Retirada
+        function alternarFormularioEntrega() {
+            var tipoFrete = document.querySelector('input[name="tipo_frete"]:checked').value;
+            var formEntrega = document.getElementById('formulario-entrega');
+            if (tipoFrete === 'entrega') {
+                formEntrega.style.display = 'block';
+            } else {
+                formEntrega.style.display = 'none';
+            }
+        }
+
+        // Função do Passo 2: Avança para mostrar os produtos e o carrinho
+        function avancarParaCategorias() {
+            document.getElementById('secao-produtos').style.display = 'block';
+            document.getElementById('secao-carrinho').style.display = 'block';
+        }
+
+        // Função do Passo 3: Gerencia as abas/setores (Básicos, Tintas, Ferragens)
+        function mudarSetor(setor) {
+            // Esconde todos os catálogos primeiro
+            document.getElementById('cat-basicos').style.display = 'none';
+            document.getElementById('cat-tintas').style.display = 'none';
+            document.getElementById('cat-ferragens').style.display = 'none';
+            
+            // Remove a classe ativa de todos os botões de aba
+            document.getElementById('aba-basicos').classList.remove('active');
+            document.getElementById('aba-tintas').classList.remove('active');
+            document.getElementById('aba-ferragens').classList.remove('active');
+            
+            // Mostra apenas o catálogo do setor escolhido e acende o botão dele
+            if (setor === 'basicos') {
+                document.getElementById('cat-basicos').style.display = 'grid';
+                document.getElementById('aba-basicos').classList.add('active');
+            } else if (setor === 'tintas') {
+                document.getElementById('cat-tintas').style.display = 'grid';
+                document.getElementById('aba-tintas').classList.add('active');
+            } else if (setor === 'ferragens') {
+                document.getElementById('cat-ferragens').style.display = 'grid';
+                document.getElementById('aba-ferragens').classList.add('active');
+            }
+        }
+        
+        var totalOrcamento = 0;
+        
+        function adicionarDoCatalogo(precoMaterial, nomeMaterial, idInputQtd) {
+            var preco = parseFloat(precoMaterial);
+            var quantidade = parseInt(document.getElementById(idInputQtd).value);
+            
+            if (quantidade < 1 || isNaN(quantidade)) {
+                alert("Por favor, insira uma quantidade válida.");
+                return;
+            }
+            
+            var aviso = document.getElementById('aviso-vazio');
+            if (aviso) {
+                aviso.remove();
+            }
+            
+            var subtotal = preco * quantidade;
+            totalOrcamento += subtotal;
+            
+            var lista = document.getElementById('lista-orcamento');
+            var novoItem = document.createElement('li');
+            
+            novoItem.setAttribute('data-subtotal', subtotal);
+            
+            novoItem.innerHTML = '<span>' + quantidade + 'x ' + nomeMaterial + '</span> <div class="preco-e-deletar"><strong>R$ ' + subtotal.toFixed(2).replace('.', ',') + '</strong><button class="btn-deletar" onclick="removerItem(this)">🗑️</button></div>';
+            
+            lista.appendChild(novoItem);
+            atualizarPainelTotal();
+            
+            document.getElementById(idInputQtd).value = 1;
+        }
+
+        function removerItem(botao) {
+            var itemLi = botao.closest('li');
+            var valorSubtrair = parseFloat(itemLi.getAttribute('data-subtotal'));
+            
+            totalOrcamento -= valorSubtrair;
+            itemLi.remove();
+            atualizarPainelTotal();
+            
+            var lista = document.getElementById('lista-orcamento');
+            if (lista.children.length === 0) {
+                lista.innerHTML = '<li id="aviso-vazio" class="item-vazio">Nenhum material selecionado ainda. Adicione itens acima!</li>';
+            }
+        }
+
+        function atualizarPainelTotal() {
+            if (totalOrcamento < 0) totalOrcamento = 0;
+            document.getElementById('valor-total').innerText = 'R$ ' + totalOrcamento.toFixed(2).replace('.', ',');
+        }
+
+        function enviarParaWhatsApp() {
+            var tipoFrete = document.querySelector('input[name="tipo_frete"]:checked').value;
+            var mensagem = "*Novo Orçamento - Tijolinho*\n\n";
+            
+            if (tipoFrete === 'entrega') {
+                var nome = document.getElementById('nome_cliente').value;
+                var tel = document.getElementById('whatsapp_cliente').value;
+                var endereco = document.getElementById('endereco_obra').value;
+                
+                if (!nome || !endereco) {
+                    alert("Por favor, preencha o nome e o endereço para a entrega.");
+                    return;
+                }
+                mensagem += "*Cliente:* " + nome + "\n*WhatsApp:* " + tel + "\n*Tipo:* Entrega na Obra\n*Endereço:* " + endereco + "\n\n";
+            } else {
+                mensagem += "*Tipo:* Retirada na Loja\n\n";
+            }
+            
+            mensagem += "*Itens Selecionados:*\n";
+            var itens = document.querySelectorAll('#lista-orcamento li:not(.item-vazio)');
+            
+            if (itens.length === 0) {
+                alert("Adicione pelo menos um material ao orçamento antes de enviar.");
+                return;
+            }
+            
+            for (var i = 0; i < itens.length; i++) {
+                var textoLimpo = itens[i].innerText.replace('🗑️', '').trim();
+                mensagem += "- " + textoLimpo + "\n";
+            }
+            
+            mensagem += "\n*Total Estimado:* " + document.getElementById('valor-total').innerText;
+            
+            // Link com o número real do WhatsApp celular do cartão do seu tio:
+            var linkWhatsapp = "https://whatsapp.com" + encodeURIComponent(mensagem);
+            window.open(linkWhatsapp, '_blank');
+        }
+    </script>
+</body>
+</html>

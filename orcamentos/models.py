@@ -14,7 +14,12 @@ class Orcamento(models.Model):
     lista_de_materiais = models.TextField()
     total_preco = models.DecimalField(max_digits=10, decimal_places=2)
     tipo_frete = models.CharField(max_length=20)
+    
 class Produto(models.Model):
     nome = models.CharField(max_length=100)
+    categoria = models.CharField(max_length=50)
+    descricao = models.TextField()
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     quantidade = models.IntegerField()
+    unidade_medida = models.CharField(max_length=20)
+

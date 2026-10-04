@@ -31,13 +31,13 @@ def atualizar_produto(request, id):
             status=405)
     try:
        produto = Produto.objects.get(id=id)
+
     except Produto.DoesNotExist:
            
         return JsonResponse(
        {'error': 'Produto não encontrado'}, 
          status=404
       )
-
 
     dados = json.loads(request.body)
 
@@ -57,16 +57,19 @@ def atualizar_produto(request, id):
         'quantidade': produto.quantidade
     }
 )
+
 def listar_produtos(request):
 
     categorias = request.GET.getlist('categoria')
+
     if categorias:
 
         produtos_do_banco = Produto.objects.filter(categoria__in=categorias)
     else:
         produtos_do_banco = Produto.objects.all()
-        
+
     lista_para_api = []
+    
     for produto in produtos_do_banco:
         lista_para_api.append({
             'id': produto.id,
@@ -78,3 +81,8 @@ def listar_produtos(request):
             'unidade_medida': produto.unidade_medida
         })
     return JsonResponse(lista_para_api, safe=False)
+
+ 
+def listar_categorias(request):
+    categorias = Produto.objects.values_list('categoria', flat=True).distinct()
+    return JsonResponse(list(categorias), safe=False)

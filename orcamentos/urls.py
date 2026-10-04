@@ -1,3 +1,5 @@
+
+from unittest.mock import patch
 from django.urls import path
 from . import views  # Puxa o arquivo views.py que está na mesma pasta
 
@@ -6,6 +8,10 @@ urlpatterns = [
     path('', views.listar_clientes, name='listar_clientes'),
     path('produtos/',
         views.listar_produtos,
-        name='listar_produtos'
+        name='listar_produtos'),    
+    path(
+         'categorias/',
+        views.listar_categorias,
+        name='listar_categorias'
         ),
 ]

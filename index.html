@@ -14,11 +14,22 @@
             <div class="selo-ano">DESDE 1990</div>
             <h1>TIJOLINHO</h1>
             <p class="subtitulo">Materiais para Construção</p>
+            <p class = "frase-loja">Construindo sonhos com você!</p> 
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+            </head>
+            <body>
+                
+            </body>
+            </html></p>
             <span class="selo-frete">🚚 ENTREGA GRÁTIS NA REGIÃO</span>
             
             <!-- Botão de entrada para iniciar o fluxo -->
             <button class="btn-iniciar" id="btn-iniciar-fluxo" onclick="iniciarOrcamento()">
-                🛠️ Começar Meu Orçamento
+                🧱 Escolher Materiais
             </button>
         </header>
 
@@ -32,7 +43,7 @@
                 </label>
                 <label class="opcao-radio">
                     <input type="radio" name="tipo_frete" value="entrega" onclick="alternarFormularioEntrega()">
-                    Entrega na Obra
+                    Entrega. 
                 </label>
             </div>
 
@@ -47,21 +58,21 @@
                     <input type="tel" id="whatsapp_cliente" placeholder="(11) 99999-9999">
                 </div>
                 <div class="grupo-input">
-                    <label for="endereco_obra">Endereço Completo da Obra:</label>
-                    <input type="text" id="endereco_obra" placeholder="Rua, número, bairro...">
+                    <label for="endereco_obra">CEP:</label>
+                    <input type="text" id="endereco_obra" placeholder="00000-000">
                 </div>
             </div>
             
-            <button class="btn-adicionar" onclick="avancarParaCategorias()">Avançar para os Produtos ➡️</button>
+            <button class="btn-adicionar" onclick="avancarParaCategorias()"> CATÁLOGO 🧱 </button>
         </div>
         <!-- 📌 PASSO 3: Filtro de Categorias (Fica escondido até o cliente avançar) -->
         <div class="secao" id="secao-produtos" style="display: none;">
             <h2>🧱 Selecione o Setor da Loja:</h2>
             
             <div class="abas-categorias">
-                <button class="btn-aba active" id="aba-basicos" onclick="mudarSetor('basicos')">🧱 Básicos & Telhas</button>
-                <button class="btn-aba" id="aba-tintas" onclick="mudarSetor('tintas')">🎨 Tintas & Pintura</button>
-                <button class="btn-aba" id="aba-ferragens" onclick="mudarSetor('ferragens')">🛠️ Parafusos & Ferragens</button>
+                <button class="btn-aba active" id="aba-basicos" onclick="mudarSetor('basicos')">🧱 Alvenaria</button>
+                <button class="btn-aba" id="aba-tintas" onclick="mudarSetor('tintas')"> 🚰 Hidráulica</button>
+                <button class="btn-aba" id="aba-ferragens" onclick="mudarSetor('ferragens')"> 🪨 Areia e Pedra</button>
             </div>
 
             <!-- 🏠 CATÁLOGO 1: BÁSICOS E TELHAS -->
@@ -98,43 +109,55 @@
             <!-- 🎨 CATÁLOGO 2: TINTAS (Começa escondido) -->
             <div id="cat-tintas" class="grid-catalogo" style="display: none;">
                 <div class="card-produto">
-                    <div class="icone-material">🪣</div>
-                    <h3>Lata de Tinta Acrílica (18L)</h3>
-                    <p class="preco-unitario">R$ 280,00 / Unid.</p>
+                    <div class="icone-material">💧</div>
+                    <h3>Caixa d´Água 1000L</h3>
+                    <p class="preco-unitario">R$ 549.90 / Unid.</p>
                     <div class="acoes-card">
-                        <input type="number" id="qtd-tinta" min="1" value="1">
-                        <button onclick="adicionarDoCatalogo(280.00, 'Lata de Tinta (18L)', 'qtd-tinta')">Adicionar</button>
+                        <input type="number" id="qtd-caixa" min="1" value="1">
+                        <button onclick="adicionarDoCatalogo(549.90, 'Caixa d´Água 1000L', 'qtd-caixa')">Adicionar</button>
                     </div>
                 </div>
                 <div class="card-produto">
-                    <div class="icone-material">🖌️</div>
-                    <h3>Rolo de Pintura + Trincha</h3>
-                    <p class="preco-unitario">R$ 45,00 / Kit</p>
+                    <div class="icone-material">🚰</div>
+                    <h3>Cano Esgoto 100mm</h3>
+                    <p class="preco-unitario">R$ 89,90 / Kit</p>
                     <div class="acoes-card">
-                        <input type="number" id="qtd-kit-pintura" min="1" value="1">
-                        <button onclick="adicionarDoCatalogo(45.00, 'Kit Rolo e Trincha', 'qtd-kit-pintura')">Adicionar</button>
+                        <input type="number" id="qtd-cano-esgoto" min="1" value="1">
+                        <button onclick="adicionarDoCatalogo(89.90, 'Cano Esgoto 100mm', 'qtd-kit-esgoto')">Adicionar</button>
+                    </div>
+                </div>
+                <div class="card-produto">
+                    <div class="icone-material">🚿</div>
+                    <h3>Cano Água 50mm</h3>
+                    <p class="preco-unitario">R$ 129,90 / Kit</p>
+                    <div class="acoes-card">
+                        <input type="number" id="qtd-cano-agua" min="1" value="1">
+                        <button onclick="adicionarDoCatalogo(129.90, 'Cano Água 50mm', 'qtd-cano-agua')">Adicionar</button>
                     </div>
                 </div>
             </div>
+        
+            
 
             <!-- 🔩 CATÁLOGO 3: FERRAGENS E PARAFUSOS (Começa escondido) -->
             <div id="cat-ferragens" class="grid-catalogo" style="display: none;">
                 <div class="card-produto">
-                    <div class="icone-material">🔩</div>
-                    <h3>Parafuso Sextavado c/ Bucha</h3>
-                    <p class="preco-unitario">R$ 1,50 / Unid.</p>
+                    <div class="icone-material">🪨</div>
+                    <h3>Brita 1</h3>
+                    <p class="preco-unitario">R$ 180,00 / Metro.</p>
                     <div class="acoes-card">
-                        <input type="number" id="qtd-parafuso" min="1" value="1">
-                        <button onclick="adicionarDoCatalogo(1.50, 'Parafuso c/ Bucha', 'qtd-parafuso')">Adicionar</button>
+                        <input type="number" id="qtd-brita" min="1" value="1">
+                        <button onclick="adicionarDoCatalogo(180.00, 'Brita 1', 'qtd-brita')">Adicionar</button>    
+
                     </div>
                 </div>
                 <div class="card-produto">
-                    <div class="icone-material">🔨</div>
-                    <h3>Pacote de Pregos com Cabeça</h3>
-                    <p class="preco-unitario">R$ 18,00 / Pacote</p>
+                    <div class="icone-material">🪨</div>
+                    <h3>Areia Fina. </h3>
+                    <p class="preco-unitario">R$ 140,00 / Metro.</p>
                     <div class="acoes-card">
-                        <input type="number" id="qtd-prego" min="1" value="1">
-                        <button onclick="adicionarDoCatalogo(18.00, 'Pacote de Pregos', 'qtd-prego')">Adicionar</button>
+                        <input type="number" id="qtd-areia" min="1" value="1">
+                        <button onclick="adicionarDoCatalogo(140.00, 'Areia Fina', 'qtd-areia')">Adicionar</button>
                     </div>
                 </div>
             </div>

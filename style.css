@@ -46,8 +46,24 @@ header .subtitulo {
     font-weight: 800;
     font-size: 16px;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-}
+    letter-spacing: 1.5px;}
+
+    .frase-loja {
+        color: #5a210f;
+        background-color: #c9ac0c;
+        padding: 6px 12px;
+        font-weight: 900;
+        margin-top: 8px;
+        font-style: italic;
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+    }
+
+    
+
+
+
 
 .secao {
     padding: 30px 25px;
@@ -77,7 +93,7 @@ header .subtitulo {
 
 .card-produto {
     background-color: #e2e4e7;
-    border: 2px solid #5a210f;
+    border: 2px solid #882a0e;
     border-radius: 8px;
     padding: 15px;
     display: flex;
@@ -151,7 +167,7 @@ label {
 
 select, input {
     padding: 12px;
-    border: 2px solid #5a210f;
+    border: 2px solid #d44216;
     border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
@@ -197,7 +213,7 @@ select:focus, input:focus {
     background-color: rgba(0, 0, 0, 0.15);
     padding: 20px;
     border-radius: 10px;
-    border: 2px dashed #ffd61e;
+    border: 5px dashed #ffd61e;
     margin-top: 20px;
 }
 
@@ -284,7 +300,7 @@ footer {
 
 .footer-secao p {
     font-size: 14px;
-    color: #a0a5ab;
+    color: #5788c5;
     line-height: 1.7;
 }
 
@@ -333,7 +349,7 @@ footer {
 /* Elementos do Fluxo e do Cartão */
 .selo-ano {
     background-color: #cc0000;
-    color: #ffffff;
+    color: #f3ebeb;
     font-size: 11px;
     font-weight: 900;
     padding: 4px 10px;
@@ -358,13 +374,13 @@ footer {
 }
 
 .btn-iniciar {
-    background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
-    color: white;
+    background: linear-gradient(135deg, #fbff04 0%, #b85320f3 100%);
+    color: rgb(90, 36, 17);
     border: 2px solid #ffffff;
     padding: 14px 28px;
     font-size: 16px;
     font-weight: bold;
-    border-radius: 30px;
+    border-radius: 40px;
     cursor: pointer;
     margin-top: 15px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -386,7 +402,7 @@ footer {
 .btn-aba {
     flex: 1;
     min-width: 140px;
-    background-color: #e2e4e7;
+    background-color: #fefeff;
     border: 2px solid #5a210f;
     color: #1a1a1a;
     padding: 10px;
@@ -398,7 +414,7 @@ footer {
 }
 
 .btn-aba:hover {
-    background-color: #ffffff;
+    background-color: #ff9305;
 }
 
 .btn-aba.active {
@@ -406,4 +422,29 @@ footer {
     border-color: #cc0000;
     color: #cc0000;
     box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+/* Botão CATÁLOGO */
+.btn-adicionar {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+
+    background: linear-gradient(135deg, #ffd61e, #ffb300);
+    color: #cc0000;
+
+    font-size: 16px;
+    font-weight: 800;
+    padding: 14px 28px;
+
+    border: 2px solid #ffffff;
+    border-radius: 30px;
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.btn-adicionar:hover {
+    transform: scale(1.04);
 }

@@ -1,0 +1,20 @@
+info:
+  name: Areia e Pedra
+  type: http
+  seq: 8
+
+http:
+  method: GET
+  url: http://127.0.0.1:8000/produtos/?categoria=Areia e Pedra
+  params:
+    - name: categoria
+      value: Areia e Pedra
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

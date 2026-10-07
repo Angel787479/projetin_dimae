@@ -1,0 +1,12 @@
+opencollection: 1.0.0
+info:
+  name: "Untitled Workspace"
+  type: workspace
+
+collections:
+  - name: "Tijolinho API"
+    path: "collections/Tijolinho API"
+
+specs:
+
+docs: ''

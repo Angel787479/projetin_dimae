@@ -2,7 +2,11 @@ import json
 from django.http import JsonResponse
 # Importa a tabela Cliente que desenhamos no arquivo models.py do lado
 from .models import Cliente, Produto
+from django.shortcuts import render
 
+
+def home(request):
+    return render(request, 'index.html')
 
 
 def listar_clientes(request):

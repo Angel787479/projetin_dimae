@@ -341,8 +341,9 @@
             mensagem += "\n*Total Estimado:* " + document.getElementById('valor-total').innerText;
             
             // Link com o número real do WhatsApp celular do cartão do seu tio:
-            var linkWhatsapp = "https://whatsapp.com" + encodeURIComponent(mensagem);
-            window.open(linkWhatsapp, '_blank');
+            var numeroWhatsApp = "5511945508180";
+            var urlWhatsApp = "https://web.whatsapp.com/send?phone=" + numeroWhatsApp + "&text=" + encodeURIComponent(mensagem);
+            window.open(urlWhatsApp, '_blank');
         }
     </script>
 </body>

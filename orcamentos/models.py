@@ -1,6 +1,5 @@
 from django.db import models
 from django.conf import settings 
-from django.db import models
 from django.utils import timezone
 
 class Cliente(models.Model):
@@ -31,7 +30,7 @@ class Orcamento(models.Model):
     lista_de_materiais = models.TextField()
     total_preco = models.DecimalField(max_digits=10, decimal_places=2)
     tipo_frete = models.CharField(max_length=20, choices=FORMAS_RECEBIMENTO)
-    status=models.CharField(max_length=20, choices=STATUS_CHOICES, default='salvo')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='salvo')
 
     criado_em = models.DateTimeField(default=timezone.now)
     cep_entrega = models.CharField(max_length=10, blank=True, null=True)

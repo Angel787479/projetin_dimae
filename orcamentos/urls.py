@@ -1,5 +1,3 @@
-
-from unittest.mock import patch
 from django.urls import path
 from . import views  # Puxa o arquivo views.py que está na mesma pasta
 
